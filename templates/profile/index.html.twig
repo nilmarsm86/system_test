@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Perfil{% endblock %}
+
+{% block body %}
+<h1>Ver detalles de perfil</h1>
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ app.user }}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ app.user.name }}</li>
+            <li class="list-group-item">{{ app.user.lastname }}</li>
+            <li class="list-group-item">{{ app.user.email }}</li>
+            <li class="list-group-item">{{ app.user.dni }}</li>
+            <li class="list-group-item">{{ country_by_code(app.user.country) }}</li>
+        </ul>
+        <div class="card-body">
+            <a href="{{ path('app_profile_edit') }}" class="card-link">Editar</a>
+        </div>
+    </div>
+{% endblock %}

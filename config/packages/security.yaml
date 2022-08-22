@@ -1,4 +1,8 @@
 security:
+    role_hierarchy:
+        ROLE_DATA_MANAGER: ROLE_USER
+        ROLE_EXTERNAL_APP: ROLE_USER
+        ROLE_ADMIN: [ROLE_USER, ROLE_DATA_MANAGER, ROLE_EXTERNAL_APP]
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
@@ -16,6 +20,15 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            form_login:
+                # "app_login" is the name of the route created previously
+                login_path: app_login
+                check_path: app_login
+                enable_csrf: true
+                default_target_path: app_profile
+            logout:
+                path: app_logout
+
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
